@@ -212,6 +212,11 @@ APP_NAME="$1"
 
 osascript <<EOF
 tell application "System Events"
+    set frontApp to name of first application process whose frontmost is true
+end tell
+tell application "$APP_NAME" to activate
+delay 0.2
+tell application "System Events"
     tell process "$APP_NAME"
         set didClick to false
         try
@@ -235,6 +240,8 @@ tell application "System Events"
         end if
     end tell
 end tell
+delay 0.1
+tell application frontApp to activate
 EOF
 ```
 ```bash
@@ -318,6 +325,11 @@ done
 
 osascript <<EOF
 tell application "System Events"
+    set frontApp to name of first application process whose frontmost is true
+end tell
+tell application "$APP" to activate
+delay 0.2
+tell application "System Events"
     tell process "$APP"
         set didClick to false
         try
@@ -341,6 +353,8 @@ tell application "System Events"
         end if
     end tell
 end tell
+delay 0.1
+tell application frontApp to activate
 EOF
 ```
 ```bash
