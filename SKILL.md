@@ -13,6 +13,18 @@ Notifiche sonore native macOS che avvisano quando Claude finisce di generare o h
 - Abilitare le notifiche di terminal-notifier in **Impostazioni di Sistema > Notifiche > terminal-notifier**
 - Conoscere il bundle ID della propria app IDE (es. `com.google.antigravity`, `com.microsoft.VSCode`). Per trovarlo: `defaults read /Applications/NOMEAPP.app/Contents/Info.plist CFBundleIdentifier`
 
+### Icona personalizzata (opzionale)
+
+Per cambiare l'icona della notifica (di default e il terminale), sostituisci l'icona dentro il bundle di terminal-notifier e forza il refresh:
+
+```bash
+# Esempio: usare il logo Claude
+cp /Applications/Claude.app/Contents/Resources/electron.icns /opt/homebrew/Cellar/terminal-notifier/*/terminal-notifier.app/Contents/Resources/Terminal.icns
+touch /opt/homebrew/Cellar/terminal-notifier/*/terminal-notifier.app
+/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f /opt/homebrew/Cellar/terminal-notifier/*/terminal-notifier.app
+killall NotificationCenter Dock 2>/dev/null
+```
+
 ## Comandi
 
 ### `/notifiche status`
