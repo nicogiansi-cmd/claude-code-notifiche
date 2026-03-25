@@ -12,10 +12,10 @@
     "macos",
     "skill"
   ],
-  "author": "nicogiansi-cmd",
+  "author": "NicoEasyAI",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nicogiansi-cmd/claude-code-notifiche"
+    "url": "https://github.com/NicoEasyAI/claude-code-notifiche"
   }
 }

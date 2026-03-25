@@ -6,17 +6,13 @@ Notifiche native macOS con logo Claude che ti avvisano quando Claude finisce di 
 
 ## Installazione
 
-### 1. Copia e incolla nel terminale:
+### Incolla nel terminale:
 
 ```bash
-mkdir -p ~/.claude/skills/notifiche && curl -sL https://raw.githubusercontent.com/nicogiansi-cmd/claude-code-notifiche/main/SKILL.md -o ~/.claude/skills/notifiche/SKILL.md
+npx github:NicoEasyAI/claude-code-notifiche
 ```
 
-### 2. Apri Claude Code e scrivi:
-
-```
-/notifiche install
-```
+Poi apri Claude Code e scrivi `/notifiche install` — fa tutto da solo.
 
 Claude farà tutto da solo:
 - ✅ Installa `terminal-notifier` (serve [Homebrew](https://brew.sh))

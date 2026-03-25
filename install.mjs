@@ -6,7 +6,7 @@ import { homedir } from "os";
 import { execSync } from "child_process";
 
 const SKILL_URL =
-  "https://raw.githubusercontent.com/nicogiansi-cmd/claude-code-notifiche/main/SKILL.md";
+  "https://raw.githubusercontent.com/NicoEasyAI/claude-code-notifiche/main/SKILL.md";
 const SKILL_DIR = join(homedir(), ".claude", "skills", "notifiche");
 const SKILL_PATH = join(SKILL_DIR, "SKILL.md");
 
