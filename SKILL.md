@@ -10,7 +10,7 @@ Gestisci le notifiche sonore native di macOS che avvisano quando Claude finisce 
 ## Comandi
 
 ### `/notifiche status`
-Leggi `~/.claude/settings.json` e controlla se i hooks `Stop` e `Notification` esistono e sono attivi. Mostra lo stato attuale:
+Leggi `~/.claude/settings.json` e controlla se i hooks `Stop`, `Notification` e `PermissionRequest` esistono e sono attivi. Mostra lo stato attuale:
 - Se gli hooks esistono e contengono il check "frontmost" -> modalita "smart" (solo quando non guardi)
 - Se gli hooks esistono senza il check -> modalita "sempre"
 - Se gli hooks non esistono -> notifiche disattivate
@@ -19,9 +19,9 @@ Leggi `~/.claude/settings.json` e controlla se i hooks `Stop` e `Notification` e
 Alias di `/notifiche smart`. Attiva le notifiche in modalita smart (default).
 
 ### `/notifiche off`
-Rimuovi i hooks `Stop` e `Notification` da `~/.claude/settings.json`. Preserva tutto il resto del file.
+Rimuovi i hooks `Stop`, `Notification` e `PermissionRequest` da `~/.claude/settings.json`. Preserva tutto il resto del file.
 
-Leggi il file, rimuovi le chiavi `Stop` e `Notification` dall'oggetto `hooks`. Se `hooks` rimane vuoto, rimuovi anche la chiave `hooks`.
+Leggi il file, rimuovi le chiavi `Stop`, `Notification` e `PermissionRequest` dall'oggetto `hooks`. Se `hooks` rimane vuoto, rimuovi anche la chiave `hooks`.
 
 ### `/notifiche sempre`
 Configura gli hooks senza il check dell'app in primo piano. Le notifiche arrivano SEMPRE, anche se stai guardando VSCode.
@@ -47,6 +47,16 @@ Hooks da scrivere in `~/.claude/settings.json` (merge con contenuto esistente):
           {
             "type": "command",
             "command": "osascript -e 'display notification \"Serve la tua attenzione!\" with title \"Claude Code\" sound name \"Submarine\"'"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "osascript -e 'display notification \"Serve la tua autorizzazione!\" with title \"Claude Code - Permesso\" sound name \"Submarine\"'"
           }
         ]
       }
@@ -79,6 +89,16 @@ Hooks da scrivere in `~/.claude/settings.json` (merge con contenuto esistente):
           {
             "type": "command",
             "command": "FRONT=$(osascript -e 'tell application \"System Events\" to get name of first application process whose frontmost is true'); if [ \"$FRONT\" != \"Electron\" ] && [ \"$FRONT\" != \"Code\" ]; then osascript -e 'display notification \"Serve la tua attenzione!\" with title \"Claude Code\" sound name \"Submarine\"'; fi"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "FRONT=$(osascript -e 'tell application \"System Events\" to get name of first application process whose frontmost is true'); if [ \"$FRONT\" != \"Electron\" ] && [ \"$FRONT\" != \"Code\" ]; then osascript -e 'display notification \"Serve la tua autorizzazione!\" with title \"Claude Code - Permesso\" sound name \"Submarine\"'; fi"
           }
         ]
       }
